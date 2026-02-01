@@ -5,40 +5,67 @@
 
 // 1. Create a paragraph element, set its text to "Hello, DOM!", and add it to #basic-output
 // Your code here:
-
+const paragraph = document.createElement('p');
+paragraph.textContent = "Hello, DOM!";
+document.getElementById('basic-output').appendChild(paragraph);
 
 // 2. Create a div with the class "card", add some text, and append it to #basic-output
 // Your code here:
-
+const card = document.createElement('div');
+card.textContent = "This is a card.";
+card.classList.add('card');
+document.getElementById('basic-output').appendChild(card);
 
 // 3. Create an h3 element, set its text and color (red), and prepend it to #basic-output
 // Your code here:
-
+const h3 = document.createElement('h3');
+h3.textContent = "Me first!";
+h3.style.color = 'red';
+document.getElementById('basic-output').prepend(h3);
 
 // 4. Create a link (anchor) that goes to "https://example.com", has text "Visit Example",
 //    opens in a new tab, and append it to #basic-output
 // Your code here:
-
+const link = document.createElement('a');
+link.href = "https://example.com";
+link.textContent = "Visit Example";
+link.target = "_blank";
+document.getElementById('basic-output').appendChild(link);
 
 
 // ===== Part 2: List Building =====
 
 // 5. Add "Cherry" to the end of #fruit-list
 // Your code here:
+const fruitList = document.getElementById('fruit-list');
+const cherry = document.createElement('li');
+cherry.textContent = "Cherry";
+fruitList.appendChild(cherry);
 
 
 // 6. Add "Grape" to the beginning of #fruit-list
 // Your code here:
-
+const grape = document.createElement('li');
+grape.textContent = "Grape";
+fruitList.insertBefore(grape, fruitList.firstChild);
 
 // 7. Add "Mango" before "Cherry" in the list
 // Hint: You'll need to find Cherry first, then use insertBefore
-// Your code here:
+// Your code here:  
+const mango = document.createElement('li');
+mango.textContent = "Mango";
+fruitList.insertBefore(mango, cherry);
+
 
 
 // 8. Create a function that adds a new fruit to the list
 // The function should take the fruit name as a parameter
 // Your code here:
+function addFruit(fruitName) {
+    const fruit = document.createElement('li');
+    fruit.textContent = fruitName;
+    fruitList.appendChild(fruit);
+}
 
 
 
@@ -47,15 +74,53 @@
 // 9. Create a function called createCard that takes title and description parameters
 // It should return a div with class "card", containing an h3 for title and p for description
 // Your code here:
+function createCard(title, description) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    const h3 = document.createElement('h3');
+    h3.textContent = title;
+    card.appendChild(h3);
+
+    const p = document.createElement('p');
+    p.textContent = description;
+    card.appendChild(p);
+
+    return card;
+}
 
 
 // 10. Use your createCard function to add 3 cards to #cards-container
 // Your code here:
 
+const cardsContainer = document.getElementById('cards-container');
+cardsContainer.appendChild(createCard('Card 1', 'This is the first card.'));
+cardsContainer.appendChild(createCard('Card 2', 'This is the second card.'));
+cardsContainer.appendChild(createCard('Card 3', 'This is the third card.'));
+
 
 // 11. Modify your createCard function to also accept an optional imageUrl parameter
 // If provided, add an img element at the top of the card
 // Your code here:
+
+function createCard(title, description, imageUrl = null) {
+    const card = document.createElement('div');
+    card.classList.add('card'); 
+    if (imageUrl) {
+        const img = document.createElement('img');
+        img.src = imageUrl;
+        img.alt = title;
+        img.style.maxWidth = '100%';
+        card.appendChild(img);
+    }
+    const h3 = document.createElement('h3');
+    h3.textContent = title;
+    card.appendChild(h3);
+    const p = document.createElement('p');
+    p.textContent = description;
+    card.appendChild(p);
+    return card;
+}
 
 
 
@@ -69,15 +134,57 @@
 // The whole thing should be wrapped in a div with class "todo-item"
 // Your code here:
 
+function createTodoItem(text) {
+    const todoItem = document.createElement('div');
+    todoItem.classList.add('todo-item');
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    todoItem.appendChild(checkbox);
+
+    const span = document.createElement('span');
+    span.textContent = text;
+    todoItem.appendChild(span);
+
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.textContent = 'Delete';
+    todoItem.appendChild(deleteBtn);
+
+    return todoItem;
+}
 
 // 13. Create 3 todo items and add them to #todo-list
 // Your code here:
+const todoList = document.getElementById('todo-list');
+todoList.appendChild(createTodoItem('Buy groceries'));
+todoList.appendChild(createTodoItem('Walk the dog'));
+todoList.appendChild(createTodoItem('Finish homework'));
 
 
 // 14. Make the delete button actually remove the todo item when clicked
 // Hint: Use event delegation or add event listener when creating
 // Your code here:
 
+function createTodoItem(text) {
+    const todoItem = document.createElement('div');
+    todoItem.classList.add('todo-item');
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    const span = document.createElement('span');
+    span.textContent = text;
+    span.style.marginLeft = '10px';
+    const deleteBtn = document.createElement('button');
+    deleteBtn.classList.add('delete-btn');
+    deleteBtn.textContent = 'Delete';
+    deleteBtn.addEventListener('click', () => {
+        todoItem.remove();
+    });
+    todoItem.appendChild(checkbox);
+    todoItem.appendChild(span);
+    todoItem.appendChild(deleteBtn);
+    return todoItem;
+}
 
 
 // ===== Part 5: Navigation =====
@@ -93,6 +200,14 @@ const navItems = [
 // Each should be an anchor with class "nav-item"
 // Add them all to #main-nav
 // Your code here:
+const mainNav = document.getElementById('main-nav');
+navItems.forEach(item => {
+    const anchor = document.createElement('a');
+    anchor.href = item.href;
+    anchor.textContent = item.text;
+    anchor.classList.add('nav-item');
+    mainNav.appendChild(anchor);
+});
 
 
 
@@ -105,6 +220,14 @@ const navItems = [
 // - Returns the button element
 // Your code here:
 
+function createButton(text, color, onClick) {
+    const button = document.createElement('button');
+    button.textContent = text;
+    button.style.backgroundColor = color;
+    button.addEventListener('click', onClick);
+    return button;
+}
+
 
 // 17. Use createButton to create 3 buttons:
 // - "Red Button" (red) - shows alert "Red clicked!"
@@ -113,7 +236,8 @@ const navItems = [
 // Add all buttons to #button-container
 // Your code here:
 
-
+const buttonContainer = document.getElementById('button-container');
+const buttonOutput = document.getElementById('button-output');
 
 // ===== BONUS Challenges =====
 
