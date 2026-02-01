@@ -238,6 +238,19 @@ function createButton(text, color, onClick) {
 
 const buttonContainer = document.getElementById('button-container');
 const buttonOutput = document.getElementById('button-output');
+buttonContainer.appendChild(
+    createButton('Red Button', 'red', () => alert('Red clicked!'))
+);
+buttonContainer.appendChild(
+    createButton('Green Button', 'green', () => console.log('Green clicked!'))
+);
+buttonContainer.appendChild(
+    createButton('Blue Button', 'blue', () => {
+        buttonOutput.style.backgroundColor = 'blue';
+        buttonOutput.style.height = '50px';
+    })
+);
+
 
 // ===== BONUS Challenges =====
 
