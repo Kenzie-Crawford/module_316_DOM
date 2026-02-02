@@ -5,10 +5,17 @@
 
 // 1. When "Change Text" is clicked, change #text-target's text to "The text has been changed!"
 // Your code here:
+document.getElementById('change-txt-btn').addEventListener('click', () => {
+    document.getElementById('text-target').textContent = "The text has been changed!"
+
+});
 
 
 // 2. When "Clear Text" is clicked, clear all text from #text-target
 // Your code here:
+document.getElementById('clear-text-btn').addEventListener('click', () => {
+    document.getElementById('text-target').textContent = '';
+});
 
 
 
@@ -18,6 +25,20 @@
 // of #mixed-content in #comparison-output
 // Format it nicely so the differences are clear
 // Your code here:
+
+document.getElementById('compare-btn').addEventListener('click', () => {
+    const element = document.getElementById('mixed-content');
+    const output = document.getElementById('comparison-output');
+
+    output.innerHTML = `
+    <h4>textContent:</h4>
+    <pre>${element.textContent}</pre>
+    <h4>innerText:</h4>
+    <pre>${element.innerText}</pre>
+    <h4>innerHTML:</h4>
+    <pre>${escapeHtml(element.innerHTML)}</pre>
+    `;
+})
 
 
 
@@ -29,7 +50,23 @@
 // - Clicking Reset should set it back to 0
 // Display the count in #counter-display
 // Your code here:
+let count = 0;
+const counterDisplay = document.getElementById('counter-display');
 
+document.getElementById('increment-btn').addEventListener('click', () => {
+    count++;
+    counterDisplay.textContent = count;
+});
+
+document.getElementById('decrement-btn').addEventListener('click', () => {
+    count--;
+    counterDisplay.textContent = count;
+});
+
+document.getElementById('reset-btn').addEventLister('click', () => {
+    count = 0;
+    counterDisplay.textContent = count;
+});
 
 
 // ===== Part 4: innerHTML =====
@@ -37,6 +74,12 @@
 // 5. When "Replace with HTML" is clicked, replace #html-container's content
 // with a heading and a paragraph
 // Your code here:
+
+document.getElementById('replace-html-btn').addEventListener('click', () =>{
+    document.getElementById('html-container').innerHTML = `
+    <h3>New Heading</h3>
+    <p>This is a new paragraph.</p>`;
+});
 
 
 // 6. When "Add a List" is clicked, add an unordered list with 3 items

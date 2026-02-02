@@ -76,7 +76,7 @@ navLinks.forEach(link => {
         e.preventDefault();
         
         // Remove active from all
-        navLinks.forEach(l => l.classList.remove('active'));
+        navLinks.forEach(link => link.classList.remove('active'));
         
         // Add active to clicked
         link.classList.add('active');

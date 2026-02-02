@@ -105,7 +105,7 @@ cardsContainer.appendChild(createCard('Card 3', 'This is the third card.'));
 
 function createCard(title, description, imageUrl = null) {
     const card = document.createElement('div');
-    card.classList.add('card'); 
+    card.classList.add('card');
     if (imageUrl) {
         const img = document.createElement('img');
         img.src = imageUrl;
@@ -272,4 +272,136 @@ const tableData = [
 // 20. Create a modal dialog component
 // It should have a title, content, close button, and overlay background
 // Your code here:
+
+
+//Part 1: Create a paragraph element and append it to #output
+const paragraph = document.createElement('p');
+paragraph.textContent = "Learning DOM!";
+document.getElementById('basic-output').appendChild(paragraph);
+
+//Part 2: Create a div with the class "highlight" amd add it to #basic-output
+
+const div = document.createElement('div');
+div.classList.add('highlight');
+document.getElementById('basic-output').appendChild(div);
+
+//Part 3: Create an h2 element with the text "Welcome!" and prepend it to #basic-output
+
+const h2 = document.createElement('h2');
+h2.textContent = "Welcome!";
+document.getElementById('basic-output').prepend(h2);
+
+//Part 3: Add "banana" to the end of a list with the ID #fruits
+
+const list = document.getElementById('fruits');
+
+const newItem = document.createElement('li');
+newItem.textContent = "banana";
+list.append(newItem);
+
+//Part 4: Add "apple" to the beginning of the same list
+
+const newFruit = document.createElement('li');
+newFruit.textContent = 'apple';
+list.prepend(newFruit);
+
+//Part 5: Inset "orange" before "banana" on the list
+
+const anotherFruit = document.createElement('li');
+anotherFruit.textContent = 'orange';
+list.insertBefore(anotherFruit, newItem);
+
+//Part 6: Create a function addFruit(fruitname) that adds fruit to the end of #fruits
+
+function addFruit(fruitName) {
+    const li = document.createElement('li');
+    li.textContent = fruitName;
+
+    document.getElementById('fruits').appendChild(li);
+}
+
+//Part 7: Create a function createCard(title, description) that returns 
+//a div with a class "card", containing a h3 for the title and a p for the 
+//description
+
+function createCard(title, description) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    const h3 = document.createElement('h3');
+    h3.textContent = title;
+
+    const p = document.createElement('p');
+    p.textContent = description;
+
+    card.appendChild(h3);
+    card.appendChild(p);
+    return card;
+
+}
+//Part 8: Use createCard function to add 3 cards to a container with
+// an ID #cards-container
+
+const container = document.getElementById('cards-container');
+
+container.appendChild(createCard('Card 1', 'This is the first card'));
+container.appendChild(createCard('Card 2', 'This is the second card'));
+container.appendChild(createCard('Card 3', 'This is the third card'));
+
+// Part 9: Now let’s update your createCard function so it can optionally accept an imageUrl.
+// If imageUrl is provided, add an <img> at the top of the card.
+// Otherwise, just create the card with h3 and p like before.
+// Try updating your createCard function for this.
+
+function createCard(title, description, imgUrl) {
+    const card = document.createElement('div');
+    card.classList.add('card');
+
+    if(imgUrl) {
+        const img = document.createElement('img');
+        img.src = imgUrl;
+        img.alt = title;
+        card.appendChild(img);
+    }
+
+    const h3 = document.createElement('h3');
+    h3.textContent = title;
+    card.appendChild(h3);
+
+    const p = document.createElement('p');
+    p.textContent = description;
+    card.appendChild(p);
+
+    return card;
+
+}
+
+// Part 10: Create a function createTodoItem(text) that creates a todo item with:
+// A checkbox input
+// A span containing the text
+// A delete button with class "delete-btn" and text "Delete"
+// Wrap all of it in a div with class "todo-item"
+
+
+function createToDoItem(text) {
+const toDoItem = document.createElement('div');
+toDoItem.classList.add('todo-item');
+
+const checkbox = document.createElement('input');
+checkbox.type = 'checkbox';
+
+const span = document.createElement('span');
+span.textContent = text;
+
+const deleteButton = document.createElement('button');
+deleteButton.textContent = 'Delete';
+deleteButton.classList.add('delete-btn');
+
+toDoItem.appendChild(checkbox);
+toDoItem.appendChild(span);
+toDoItem.appendChild(deleteButton);
+
+return toDoItem;
+}
+
 
