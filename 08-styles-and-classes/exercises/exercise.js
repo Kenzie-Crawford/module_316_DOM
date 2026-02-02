@@ -220,6 +220,19 @@ actionButton.addEventListener('click', () => {
 // - After 2 seconds, remove 'disabled' class and change text back to "Submit"
 // Your code here:
 
+const loadingButton = document.getElementById('loading-btn');
+loadingButton.addEventListener('click', () => {
+    loadingButton.classList.add('disabled');
+    loadingButton.textContent = 'Loading...';
+    loadingButtong.disabled = true;
+
+    setTimeout(()=>{
+        loadingButton.classList.remove('disabled');
+        loadingButton.textContent = 'Submit';
+        loadingButton.disabled = false;
+    }, 2000);
+});
+
 
 
 // ===== BONUS Challenges =====
