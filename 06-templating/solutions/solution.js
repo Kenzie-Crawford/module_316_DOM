@@ -18,13 +18,13 @@ numbersList.appendChild(fragment1);
 function addItemsToList(items, listId) {
     const list = document.getElementById(listId);
     const fragment = document.createDocumentFragment();
-    
+
     items.forEach(item => {
         const li = document.createElement('li');
         li.textContent = item;
         fragment.appendChild(li);
     });
-    
+
     list.appendChild(fragment);
 }
 // Test: addItemsToList(['Apple', 'Banana', 'Cherry'], 'numbers-list');
@@ -65,18 +65,18 @@ const productFragment = document.createDocumentFragment();
 
 products.forEach(product => {
     const clone = productTemplate.content.cloneNode(true);
-    
+
     clone.querySelector('.product-image').src = product.image;
     clone.querySelector('.product-image').alt = product.name;
     clone.querySelector('.product-name').textContent = product.name;
     clone.querySelector('.product-description').textContent = product.description;
     clone.querySelector('.price').textContent = `$${product.price.toFixed(2)}`;
-    
+
     // Add event listener for Add to Cart button
     clone.querySelector('.add-to-cart').addEventListener('click', () => {
         console.log(`Added ${product.name} to cart!`);
     });
-    
+
     productFragment.appendChild(clone);
 });
 
@@ -127,11 +127,11 @@ const messageFragment = document.createDocumentFragment();
 messages.forEach(message => {
     const clone = messageTemplate.content.cloneNode(true);
     const messageDiv = clone.querySelector('.message');
-    
+
     messageDiv.classList.add(message.sent ? 'sent' : 'received');
     clone.querySelector('.text').textContent = message.text;
     clone.querySelector('.time').textContent = ` - ${message.time}`;
-    
+
     messageFragment.appendChild(clone);
 });
 
@@ -147,13 +147,13 @@ const perfResult = document.getElementById('performance-result');
 document.getElementById('test-slow').addEventListener('click', () => {
     perfList.innerHTML = '';
     const start = performance.now();
-    
+
     for (let i = 0; i < 1000; i++) {
         const li = document.createElement('li');
         li.textContent = `Direct item ${i}`;
         perfList.appendChild(li);
     }
-    
+
     const end = performance.now();
     perfResult.textContent = `Direct append: ${(end - start).toFixed(2)}ms`;
 });
@@ -161,7 +161,7 @@ document.getElementById('test-slow').addEventListener('click', () => {
 document.getElementById('test-fast').addEventListener('click', () => {
     perfList.innerHTML = '';
     const start = performance.now();
-    
+
     const fragment = document.createDocumentFragment();
     for (let i = 0; i < 1000; i++) {
         const li = document.createElement('li');
@@ -169,7 +169,7 @@ document.getElementById('test-fast').addEventListener('click', () => {
         fragment.appendChild(li);
     }
     perfList.appendChild(fragment);
-    
+
     const end = performance.now();
     perfResult.textContent = `Fragment append: ${(end - start).toFixed(2)}ms`;
 });
@@ -180,8 +180,8 @@ document.getElementById('test-fast').addEventListener('click', () => {
 // 10. Template factory function
 function createTemplateFactory(templateId) {
     const template = document.getElementById(templateId);
-    
-    return function(fillFunction) {
+
+    return function (fillFunction) {
         const clone = template.content.cloneNode(true);
         fillFunction(clone);
         return clone;
@@ -200,15 +200,15 @@ function refreshList(containerId, templateId, data, fillFunction) {
     const container = document.getElementById(containerId);
     const template = document.getElementById(templateId);
     const fragment = document.createDocumentFragment();
-    
+
     container.innerHTML = '';
-    
+
     data.forEach(item => {
         const clone = template.content.cloneNode(true);
         fillFunction(clone, item);
         fragment.appendChild(clone);
     });
-    
+
     container.appendChild(fragment);
 }
 
@@ -223,14 +223,14 @@ function refreshList(containerId, templateId, data, fillFunction) {
 function createNestedComponent(parentData, childrenData) {
     const parentTemplate = document.createElement('div');
     parentTemplate.classList.add('parent-component');
-    
+
     const header = document.createElement('h3');
     header.textContent = parentData.title;
     parentTemplate.appendChild(header);
-    
+
     const childContainer = document.createElement('div');
     childContainer.classList.add('children');
-    
+
     const childFragment = document.createDocumentFragment();
     childrenData.forEach(child => {
         const childEl = document.createElement('div');
@@ -240,8 +240,12 @@ function createNestedComponent(parentData, childrenData) {
     });
     childContainer.appendChild(childFragment);
     parentTemplate.appendChild(childContainer);
-    
+
     return parentTemplate;
 }
 
 console.log('All template exercises completed!');
+
+
+
+

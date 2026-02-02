@@ -204,4 +204,54 @@ Array.from(productsCollection).forEach(product => {
 // Your code here:
 
 
+// Part 1: Classic for loop to log menu-item text
+const items = document.querySelectorAll('.menu-item');
+for (let i = 0; i < items.length; i++) {
+    console.log(items[i].textContent);
+}
 
+// Part 2: for...of loop to add 'visited' class
+for (const item of items) {
+    item.classList.add('visited');
+}
+
+// Part 3: forEach to log menu-item text with index
+items.forEach((item, index) => {
+    console.log(`Item ${index}: ${item.textContent}`);
+});
+
+// Part 4: Number nav button text
+const buttons = document.querySelectorAll('.nav-btn');
+buttons.forEach((button, index) => {
+    button.textContent = `${index + 1}. ${button.textContent}`;
+    console.log(`${index}: ${button.textContent}`);
+});
+
+// Part 5: Add data-position to menu items
+items.forEach((item, index) => {
+    item.dataset.position = index;
+});
+
+// Part 6: Map card scores to an array
+const cards = document.querySelectorAll('.card');
+const cardScores = Array.from(cards).map(card => parseFloat(card.dataset.score));
+
+// Part 7: Reduce to calculate total score
+const totalScore = Array.from(cards).reduce((sum, card) =>
+    sum + parseFloat(card.dataset.score), 0);
+
+// Part 8: Get only the cards that score above 80
+const highScore = [...cards].filter(card =>
+    parseFloat(card.dataset.score) > 80
+);
+//part 9: Find the first menu-item element that has the class 'feateured'
+const firstFeatured = Array.from(items).find(item =>
+    item.classList.contains('featured'));
+
+//Part 10: Calculate the total score of all the cards using the cardscores array
+const totalScore = cardScores.reduce((sum, score) => sum + score, 0);
+
+//Part 11: Get all cards in a specific category and calculate their total score
+const electronicsTotal = Array.from(cards)
+    .filter(card => (card.dataset.category) === 'electronics')
+    .reduce((sum, card) => sum + parseFloat(card.dataset.score), 0);
